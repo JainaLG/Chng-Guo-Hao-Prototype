@@ -16,6 +16,8 @@ Then open http://127.0.0.1:4173/
 
 Pages: Home, About, Estate Planning, Retirement Planning, Articles, Book an Appointment.
 
+Photos come from the Figma file (hero portrait, mastheads, mosaics, programme and FAQ images). Hover and motion follow the prototype: nav, credential and USP cards, philosophy cards, FAQ accordion, scrolling ticker, and the reviews badge.
+
 The **Legacy Growth Calculator** (Estate) and **Retirement Growth Calculator** (Retirement) are live time-value-of-money calculators. Default inputs (PV 100000, PMT 1000, 4%, 20 years, annual compounding, end-of-period payments) produce **$248,890.39**, matching the Figma design.
 
 ## Figma plugin

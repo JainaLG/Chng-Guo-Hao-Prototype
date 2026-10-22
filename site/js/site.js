@@ -84,6 +84,10 @@
       })
     })
 
+    document.querySelectorAll(".cred, .usp, .philosophy article").forEach(function (el) {
+      el.setAttribute("tabindex", "0")
+    })
+
     const form = document.querySelector("[data-consult-form]")
     if (form) {
       form.addEventListener("submit", function (event) {
