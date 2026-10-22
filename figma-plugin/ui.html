@@ -1,0 +1,282 @@
+<!doctype html>
+<html>
+<head>
+  <style>
+    html, body { margin: 0; padding: 0; height: auto; min-height: 0; }
+    body { display: block; }
+    #plugin-root { height: auto; }
+    body > #plugin-root > fig-footer {
+      background-color: var(--figma-color-bg);
+      box-shadow: inset 0 1px 0 0 var(--figma-color-border);
+      border-radius: 0 0 var(--radius-large) var(--radius-large);
+    }
+    #status {
+      color: var(--figma-color-text-secondary);
+      font-size: var(--font-size-small);
+    }
+    #status[data-level="error"] { color: var(--figma-color-text-danger); }
+    #status[data-level="success"] { color: var(--figma-color-text-success); }
+    .footer-actions {
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacer-2);
+      width: 100%;
+    }
+  </style>
+  <script>
+    try {
+      window.localStorage.getItem('x')
+    } catch (e) {
+      const store = new Map()
+      const shim = {
+        getItem: (key) => store.has(key) ? store.get(key) : null,
+        setItem: (key, value) => { store.set(key, String(value)) },
+        removeItem: (key) => { store.delete(key) },
+        clear: () => { store.clear() },
+        key: (index) => Array.from(store.keys())[index] ?? null,
+        get length() { return store.size },
+      }
+      Object.defineProperty(window, 'localStorage', { value: shim, configurable: true })
+    }
+  </script>
+</head>
+<body>
+  <div id="plugin-root">
+    <fig-content>
+      <fig-field>
+        <label>Page type</label>
+        <fig-dropdown id="pageType">
+          <option value="home" selected>Home</option>
+          <option value="about">About</option>
+          <option value="estate">Estate Planning</option>
+          <option value="retirement">Retirement Planning</option>
+          <option value="articles">Articles</option>
+          <option value="book">Book an Appointment</option>
+          <option value="custom">Custom</option>
+        </fig-dropdown>
+      </fig-field>
+      <fig-field>
+        <label>Page title</label>
+        <fig-input-text id="pageTitle" value="Home | Chng Guohao"></fig-input-text>
+      </fig-field>
+      <fig-group name="Sections">
+        <fig-field>
+          <label>Hero</label>
+          <fig-switch id="secHero" checked></fig-switch>
+        </fig-field>
+        <fig-field>
+          <label>Intro</label>
+          <fig-switch id="secIntro" checked></fig-switch>
+        </fig-field>
+        <fig-field>
+          <label>Services</label>
+          <fig-switch id="secServices" checked></fig-switch>
+        </fig-field>
+        <fig-field>
+          <label>Programmes</label>
+          <fig-switch id="secProgrammes" checked></fig-switch>
+        </fig-field>
+        <fig-field>
+          <label>Process</label>
+          <fig-switch id="secProcess"></fig-switch>
+        </fig-field>
+        <fig-field>
+          <label>Stats</label>
+          <fig-switch id="secStats"></fig-switch>
+        </fig-field>
+        <fig-field>
+          <label>Testimonials</label>
+          <fig-switch id="secTestimonials" checked></fig-switch>
+        </fig-field>
+        <fig-field>
+          <label>FAQ</label>
+          <fig-switch id="secFaq" checked></fig-switch>
+        </fig-field>
+        <fig-field>
+          <label>Call to action</label>
+          <fig-switch id="secCta" checked></fig-switch>
+        </fig-field>
+      </fig-group>
+      <fig-group name="Chrome">
+        <fig-field>
+          <label>Navigation</label>
+          <fig-switch id="includeNav" checked></fig-switch>
+        </fig-field>
+        <fig-field>
+          <label>Footer</label>
+          <fig-switch id="includeFooter" checked></fig-switch>
+        </fig-field>
+        <fig-field>
+          <label>Wire prototype links</label>
+          <fig-switch id="wirePrototype" checked></fig-switch>
+        </fig-field>
+      </fig-group>
+      <fig-field>
+        <label>CTA label</label>
+        <fig-input-text id="ctaLabel" value="Book a consultation"></fig-input-text>
+      </fig-field>
+    </fig-content>
+    <fig-footer sticky>
+      <div class="footer-actions">
+        <label id="status">Ready — uses Figma tokens, prototype nav, and Fintech section structure.</label>
+        <fig-button id="generate" type="submit">Generate page</fig-button>
+        <fig-button id="sitemap">Generate full sitemap</fig-button>
+      </div>
+    </fig-footer>
+  </div>
+  <script>
+    function post(message) {
+      parent.postMessage({ pluginMessage: message }, '*')
+    }
+
+    let lastReportedHeight = 0
+    let resizeRaf = 0
+    function reportHeight() {
+      const root = document.getElementById('plugin-root')
+      if (!root) return
+      const height = Math.ceil(root.getBoundingClientRect().height)
+      if (height && height !== lastReportedHeight) {
+        lastReportedHeight = height
+        post({ type: 'resize', height: height })
+      }
+    }
+    const pluginRoot = document.getElementById('plugin-root')
+    if (pluginRoot && typeof ResizeObserver !== 'undefined') {
+      new ResizeObserver(function () {
+        if (resizeRaf) cancelAnimationFrame(resizeRaf)
+        resizeRaf = requestAnimationFrame(reportHeight)
+      }).observe(pluginRoot)
+    }
+
+    const PRESETS = {
+      home: {
+        title: 'Home | Chng Guohao',
+        hero: true, intro: true, services: true, programmes: true,
+        process: false, stats: false, testimonials: true, faq: true, cta: true,
+      },
+      about: {
+        title: 'About | Wealth Path',
+        hero: true, intro: true, services: false, programmes: false,
+        process: true, stats: true, testimonials: true, faq: false, cta: true,
+      },
+      estate: {
+        title: 'Estate Planning Programme | Chng Guohao',
+        hero: true, intro: true, services: false, programmes: false,
+        process: true, stats: false, testimonials: false, faq: true, cta: true,
+      },
+      retirement: {
+        title: 'Retirement Planning Programme | Chng Guohao',
+        hero: true, intro: true, services: false, programmes: false,
+        process: true, stats: false, testimonials: false, faq: true, cta: true,
+      },
+      articles: {
+        title: 'Insights & Resources | Wealth Path Blog',
+        hero: true, intro: false, services: false, programmes: true,
+        process: false, stats: false, testimonials: false, faq: false, cta: true,
+      },
+      book: {
+        title: 'Book a Consultation | Wealth Path',
+        hero: true, intro: true, services: false, programmes: false,
+        process: false, stats: false, testimonials: false, faq: false, cta: true,
+      },
+      custom: {
+        title: 'Custom | Wealth Path',
+        hero: true, intro: true, services: true, programmes: true,
+        process: true, stats: true, testimonials: true, faq: true, cta: true,
+      },
+    }
+
+    function setSwitch(id, on) {
+      const el = document.getElementById(id)
+      if (!el) return
+      el.checked = !!on
+      el.value = on ? 'true' : 'false'
+      if ('on' in el) el.on = !!on
+    }
+
+    function isOn(id) {
+      const el = document.getElementById(id)
+      if (!el) return false
+      const v = el.value
+      if (v === true || v === 'true' || v === 'on') return true
+      if (v === false || v === 'false' || v === 'off' || v === '') {
+        return !!el.checked
+      }
+      return !!(el.checked || el.on)
+    }
+
+    function applyPreset(type) {
+      const preset = PRESETS[type] || PRESETS.custom
+      document.getElementById('pageTitle').value = preset.title
+      setSwitch('secHero', preset.hero)
+      setSwitch('secIntro', preset.intro)
+      setSwitch('secServices', preset.services)
+      setSwitch('secProgrammes', preset.programmes)
+      setSwitch('secProcess', preset.process)
+      setSwitch('secStats', preset.stats)
+      setSwitch('secTestimonials', preset.testimonials)
+      setSwitch('secFaq', preset.faq)
+      setSwitch('secCta', preset.cta)
+    }
+
+    document.getElementById('pageType').addEventListener('change', function () {
+      applyPreset(String(document.getElementById('pageType').value || 'home'))
+    })
+
+    function collectPayload(mode) {
+      return {
+        type: mode,
+        pageType: String(document.getElementById('pageType').value || 'home'),
+        pageTitle: String(document.getElementById('pageTitle').value || '').trim(),
+        ctaLabel: String(document.getElementById('ctaLabel').value || '').trim() || 'Book a consultation',
+        sections: {
+          hero: isOn('secHero'),
+          intro: isOn('secIntro'),
+          services: isOn('secServices'),
+          programmes: isOn('secProgrammes'),
+          process: isOn('secProcess'),
+          stats: isOn('secStats'),
+          testimonials: isOn('secTestimonials'),
+          faq: isOn('secFaq'),
+          cta: isOn('secCta'),
+        },
+        includeNav: isOn('includeNav'),
+        includeFooter: isOn('includeFooter'),
+        wirePrototype: isOn('wirePrototype'),
+      }
+    }
+
+    const generateBtn = document.getElementById('generate')
+    const sitemapBtn = document.getElementById('sitemap')
+    const statusEl = document.getElementById('status')
+
+    function setBusy(busy, label) {
+      generateBtn.disabled = busy
+      sitemapBtn.disabled = busy
+      if (label) {
+        statusEl.textContent = label
+        statusEl.dataset.level = 'info'
+      }
+    }
+
+    generateBtn.addEventListener('click', function () {
+      setBusy(true, 'Generating page…')
+      post(collectPayload('generate'))
+    })
+    sitemapBtn.addEventListener('click', function () {
+      setBusy(true, 'Generating sitemap…')
+      post(collectPayload('sitemap'))
+    })
+
+    window.addEventListener('message', function (event) {
+      const msg = event.data && event.data.pluginMessage
+      if (!msg || typeof msg !== 'object') return
+      if (msg.type === 'status') {
+        statusEl.textContent = String(msg.text || '')
+        statusEl.dataset.level = msg.level || 'info'
+        setBusy(false)
+      }
+    })
+  </script>
+</body>
+</html>
