@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Estate Planning Programme | Chng Guohao</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,400&family=Manrope:wght@800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body data-page="estate">
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="site-header" data-site-header></header>
+  <main id="main">
+    <section class="hero navy">
+      <div>
+        <p class="eyebrow">Programme</p>
+        <h1>Estate Planning Programme</h1>
+        <p>Protect what matters and shape the legacy you leave behind. Plan for the preservation and transfer of your wealth in line with your wishes, family needs, and long-term priorities.</p>
+        <a class="btn" href="book.html">Book a consultation</a>
+      </div>
+      <div class="portrait" aria-hidden="true">Portrait</div>
+    </section>
+    <section class="section">
+      <div class="section-inner split">
+        <div class="mosaic">
+          <div class="wide"></div>
+          <div class="mosaic-row"><span></span><span></span></div>
+        </div>
+        <div>
+          <p class="kicker navy">Estate planning</p>
+          <h2>Protect what matters and shape the legacy you leave behind</h2>
+          <p class="lede">Plan for the preservation and transfer of your wealth in line with your wishes, family needs, and long-term priorities, giving you greater peace of mind about the future.</p>
+        </div>
+      </div>
+    </section>
+    <section class="calc" id="calculator">
+      <div class="calc-grid" data-calculator>
+        <div>
+          <p class="kicker">Financial calculator</p>
+          <h2>Legacy Growth <span>Calculator</span></h2>
+          <p class="lede">Estimate how your current funds and regular contributions could grow over time using the time value of money.</p>
+          <div class="fv-card">
+            <p class="label">Estimated future value</p>
+            <p class="value" data-fv>$248,890.39</p>
+            <p class="note">This illustration is for general information only and does not account for fees, taxes, inflation, or market fluctuations.</p>
+          </div>
+        </div>
+        <form class="calc-panel" onsubmit="return false;">
+          <div class="field">
+            <label for="estate-pv">Present Value</label>
+            <input id="estate-pv" name="pv" type="number" inputmode="decimal" min="0" step="any" value="100000">
+            <div class="chip">PV</div>
+          </div>
+          <div class="field">
+            <label for="estate-pmt">Payments</label>
+            <input id="estate-pmt" name="pmt" type="number" inputmode="decimal" step="any" value="1000">
+            <div class="chip">PMT</div>
+          </div>
+          <div class="field">
+            <label for="estate-rate">Annual Rate (%)</label>
+            <input id="estate-rate" name="rate" type="number" inputmode="decimal" min="0" step="any" value="4">
+            <div class="chip">Rate</div>
+          </div>
+          <div class="field">
+            <label for="estate-years">Periods (Years)</label>
+            <input id="estate-years" name="years" type="number" inputmode="decimal" min="0" step="any" value="20">
+            <div class="chip">Periods</div>
+          </div>
+          <div class="calc-opts">
+            <div class="opt">
+              <span>Compounding</span>
+              <div class="seg" data-group="compounding">
+                <button type="button" class="is-on" data-value="annually">Annually</button>
+                <button type="button" data-value="monthly">Monthly</button>
+              </div>
+            </div>
+            <div class="opt">
+              <span>Payment Mode</span>
+              <div class="seg" data-group="mode">
+                <button type="button" class="is-on" data-value="end">end</button>
+                <button type="button" data-value="beginning">beginning</button>
+              </div>
+            </div>
+            <div class="opt">
+              <span>Decimal Places</span>
+              <div class="seg" data-group="decimals">
+                <button type="button" class="is-on" data-value="2">2</button>
+                <button type="button" data-value="3">3</button>
+                <button type="button" data-value="4">4</button>
+                <button type="button" data-value="5">5</button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </section>
+    <section class="section">
+      <div class="section-inner">
+        <p class="kicker navy">Process</p>
+        <h2>Our process for financial success</h2>
+        <div class="steps">
+          <div class="step"><strong>01</strong><h3>Initial Consultation</h3></div>
+          <div class="step"><strong>02</strong><h3>Personal Plan</h3></div>
+          <div class="step"><strong>03</strong><h3>Growth Strategy</h3></div>
+          <div class="step"><strong>04</strong><h3>Ongoing Review</h3></div>
+        </div>
+      </div>
+    </section>
+    <section class="section">
+      <div class="section-inner faq-layout">
+        <div>
+          <p class="kicker navy">FAQ</p>
+          <h2>Your questions, answered</h2>
+        </div>
+        <div>
+          <article class="faq-item">
+            <button type="button">What happens if I do not have a will? <span class="sign">+</span></button>
+            <div class="answer">Without a valid will, your estate will be distributed according to Singapore's Intestate Succession Act, which may not reflect your actual wishes.</div>
+          </article>
+          <article class="faq-item">
+            <button type="button">What is CPF nomination and why does it matter? <span class="sign">+</span></button>
+            <div class="answer">CPF savings do not automatically form part of your estate. A CPF nomination ensures your CPF monies are distributed to the people you choose.</div>
+          </article>
+          <article class="faq-item">
+            <button type="button">Can insurance be part of my estate plan? <span class="sign">+</span></button>
+            <div class="answer">Yes. Insurance can provide immediate liquidity for your family and help settle outstanding liabilities, so other assets do not need to be sold quickly.</div>
+          </article>
+          <article class="faq-item">
+            <button type="button">What is a Lasting Power of Attorney (LPA)? <span class="sign">+</span></button>
+            <div class="answer">An LPA lets you appoint someone you trust to make decisions on your behalf, in case you lose mental capacity in future.</div>
+          </article>
+          <article class="faq-item">
+            <button type="button">When should I start estate planning? <span class="sign">+</span></button>
+            <div class="answer">As early as possible. Estate planning is not only for the wealthy or the elderly. It is for anyone who wants clarity over how their assets are handled.</div>
+          </article>
+        </div>
+      </div>
+    </section>
+    <section class="cta-band">
+      <div>
+        <h2>Start Planning Your Legacy Today</h2>
+        <p>Have a question about estate planning, retirement planning, or your overall financial picture? Reach out for a no-obligation conversation today.</p>
+      </div>
+      <a class="btn" href="book.html">Book a consultation</a>
+    </section>
+  </main>
+  <footer class="site-footer" data-site-footer></footer>
+  <script src="js/calculator.js"></script>
+  <script src="js/site.js"></script>
+</body>
+</html>

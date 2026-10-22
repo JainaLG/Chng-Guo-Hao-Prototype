@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Retirement Planning Programme | Chng Guohao</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,400&family=Manrope:wght@800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body data-page="retirement">
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="site-header" data-site-header></header>
+  <main id="main">
+    <section class="hero navy">
+      <div>
+        <p class="eyebrow">Programme</p>
+        <h1>Retirement Planning Programme</h1>
+        <p>Plan for the retirement you envision with a strategy tailored to your desired lifestyle, financial resources, and future income needs.</p>
+        <a class="btn" href="book.html">Book a consultation</a>
+      </div>
+      <div class="portrait" aria-hidden="true">Portrait</div>
+    </section>
+    <section class="section">
+      <div class="section-inner split">
+        <div class="mosaic">
+          <div class="wide"></div>
+          <div class="mosaic-row"><span></span><span></span></div>
+        </div>
+        <div>
+          <p class="kicker navy">Retirement planning</p>
+          <h2>Plan for the retirement you envision</h2>
+          <p class="lede">From CPF retirement planning to building sustainable income streams, prepare for the years ahead with a strategy tailored to your desired lifestyle, financial resources, and future income needs.</p>
+        </div>
+      </div>
+    </section>
+    <section class="calc" id="calculator">
+      <div class="calc-grid" data-calculator>
+        <div>
+          <p class="kicker">Financial calculator</p>
+          <h2>Retirement Growth <span>Calculator</span></h2>
+          <p class="lede">Estimate how your current funds and regular contributions could grow over time using the time value of money.</p>
+          <div class="fv-card">
+            <p class="label">Estimated future value</p>
+            <p class="value" data-fv>$248,890.39</p>
+            <p class="note">This illustration is for general information only and does not account for fees, taxes, inflation, or market fluctuations.</p>
+          </div>
+        </div>
+        <form class="calc-panel" onsubmit="return false;">
+          <div class="field">
+            <label for="ret-pv">Present Value</label>
+            <input id="ret-pv" name="pv" type="number" inputmode="decimal" min="0" step="any" value="100000">
+            <div class="chip">PV</div>
+          </div>
+          <div class="field">
+            <label for="ret-pmt">Payments</label>
+            <input id="ret-pmt" name="pmt" type="number" inputmode="decimal" step="any" value="1000">
+            <div class="chip">PMT</div>
+          </div>
+          <div class="field">
+            <label for="ret-rate">Annual Rate (%)</label>
+            <input id="ret-rate" name="rate" type="number" inputmode="decimal" min="0" step="any" value="4">
+            <div class="chip">Rate</div>
+          </div>
+          <div class="field">
+            <label for="ret-years">Periods (Years)</label>
+            <input id="ret-years" name="years" type="number" inputmode="decimal" min="0" step="any" value="20">
+            <div class="chip">Periods</div>
+          </div>
+          <div class="calc-opts">
+            <div class="opt">
+              <span>Compounding</span>
+              <div class="seg" data-group="compounding">
+                <button type="button" class="is-on" data-value="annually">Annually</button>
+                <button type="button" data-value="monthly">Monthly</button>
+              </div>
+            </div>
+            <div class="opt">
+              <span>Payment Mode</span>
+              <div class="seg" data-group="mode">
+                <button type="button" class="is-on" data-value="end">end</button>
+                <button type="button" data-value="beginning">beginning</button>
+              </div>
+            </div>
+            <div class="opt">
+              <span>Decimal Places</span>
+              <div class="seg" data-group="decimals">
+                <button type="button" class="is-on" data-value="2">2</button>
+                <button type="button" data-value="3">3</button>
+                <button type="button" data-value="4">4</button>
+                <button type="button" data-value="5">5</button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </section>
+    <section class="section">
+      <div class="section-inner">
+        <p class="kicker navy">Process</p>
+        <h2>Our process for financial success</h2>
+        <div class="steps">
+          <div class="step"><strong>01</strong><h3>Initial Consultation</h3></div>
+          <div class="step"><strong>02</strong><h3>Personal Plan</h3></div>
+          <div class="step"><strong>03</strong><h3>Growth Strategy</h3></div>
+          <div class="step"><strong>04</strong><h3>Ongoing Review</h3></div>
+        </div>
+      </div>
+    </section>
+    <section class="section">
+      <div class="section-inner faq-layout">
+        <div>
+          <p class="kicker navy">FAQ</p>
+          <h2>Your questions, answered</h2>
+        </div>
+        <div>
+          <article class="faq-item">
+            <button type="button">How much money do I need to retire comfortably in Singapore? <span class="sign">+</span></button>
+            <div class="answer">The amount depends on your desired lifestyle, expected retirement age, housing arrangements, healthcare needs, and other financial commitments.</div>
+          </article>
+          <article class="faq-item">
+            <button type="button">How can I generate a regular income during retirement? <span class="sign">+</span></button>
+            <div class="answer">Retirement income may come from CPF LIFE payouts, savings, investment income, and other eligible income sources.</div>
+          </article>
+          <article class="faq-item">
+            <button type="button">How does CPF support my retirement planning? <span class="sign">+</span></button>
+            <div class="answer">CPF plays an important role in retirement planning through your CPF savings and the monthly payouts available under CPF LIFE, subject to eligibility and applicable rules.</div>
+          </article>
+          <article class="faq-item">
+            <button type="button">Can a financial advisor help me plan for retirement if I already have CPF savings and investments? <span class="sign">+</span></button>
+            <div class="answer">Yes. A retirement financial advisor can help assess how your CPF savings, investments, insurance, and other assets work together.</div>
+          </article>
+          <article class="faq-item">
+            <button type="button">What is CPF LIFE, and how does it affect my retirement income? <span class="sign">+</span></button>
+            <div class="answer">CPF LIFE is a national longevity insurance annuity scheme that provides eligible members with monthly payouts for life. Understanding your expected payouts and how they complement other income sources can help you plan for your retirement lifestyle.</div>
+          </article>
+        </div>
+      </div>
+    </section>
+    <section class="cta-band">
+      <div>
+        <h2>Start Your Financial Wellness Journey</h2>
+        <p>Have a question about estate planning, retirement planning, or your overall financial picture? Reach out for a no-obligation conversation today.</p>
+      </div>
+      <a class="btn" href="book.html">Book a consultation</a>
+    </section>
+  </main>
+  <footer class="site-footer" data-site-footer></footer>
+  <script src="js/calculator.js"></script>
+  <script src="js/site.js"></script>
+</body>
+</html>
