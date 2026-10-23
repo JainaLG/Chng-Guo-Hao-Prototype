@@ -30,7 +30,7 @@ Pages: Home, About, Estate Planning, Retirement Planning, Articles, Book an Appo
 
 Photos come from the Figma file (hero portrait, mastheads, mosaics, programme and FAQ images). Hover and motion follow the prototype: nav, credential and USP cards, philosophy cards, FAQ accordion, scrolling ticker, and the reviews badge.
 
-The **Legacy Growth Calculator** (Estate) and **Retirement Growth Calculator** (Retirement) are live time-value-of-money calculators. Default inputs (PV 100000, PMT 1000, 4%, 20 years, annual compounding, end-of-period payments) produce **$248,890.39**, matching the Figma design.
+The **Legacy Growth Calculator** (Estate) and **Retirement Growth Calculator** (Retirement) match the current Figma TVM calculator: empty fields, **$0.00** until you solve, compute buttons for PV / PMT / FV / Rate / Periods, compounding dropdown, End/Beginning mode, and Two–Five decimal places. Fill any four values, then tap the fifth button. PV `100000`, PMT `1000`, rate `4`, periods `20`, annually, End produces **$248,890.39**.
 
 ## Figma plugin
 

@@ -50,98 +50,139 @@
           <p class="lede">Estimate how your current funds and regular contributions could grow over time using the time value of money.</p>
           <div class="fv-card">
             <p class="label">Estimated future value</p>
-            <p class="value" data-fv>$248,890.39</p>
+            <p class="value" data-fv aria-live="polite">$0.00</p>
             <p class="note">This illustration is for general information only and does not account for fees, taxes, inflation, or market fluctuations.</p>
           </div>
+          <p class="calc-error" data-calc-error hidden></p>
         </div>
         <form class="calc-panel" onsubmit="return false;">
-          <div class="field">
+          <div class="tvm-head">
+            <a href="index.html">‹ Home</a>
+            <span class="tvm-title">TVM Calculator</span>
+            <button type="button" data-advanced aria-expanded="false">Advanced</button>
+          </div>
+          <div class="tvm-row">
             <label for="ret-pv">Present Value</label>
-            <input id="ret-pv" name="pv" type="number" inputmode="decimal" min="0" step="any" value="100000">
-            <div class="chip">PV</div>
+            <input id="ret-pv" name="pv" type="number" inputmode="decimal" step="any">
+            <button type="button" class="tvm-solve" data-solve="pv">PV</button>
           </div>
-          <div class="field">
+          <div class="tvm-row">
             <label for="ret-pmt">Payments</label>
-            <input id="ret-pmt" name="pmt" type="number" inputmode="decimal" step="any" value="1000">
-            <div class="chip">PMT</div>
+            <input id="ret-pmt" name="pmt" type="number" inputmode="decimal" step="any">
+            <button type="button" class="tvm-solve" data-solve="pmt">PMT</button>
           </div>
-          <div class="field">
-            <label for="ret-rate">Annual Rate (%)</label>
-            <input id="ret-rate" name="rate" type="number" inputmode="decimal" min="0" step="any" value="4">
-            <div class="chip">Rate</div>
+          <div class="tvm-row">
+            <label for="ret-fv">Future Value</label>
+            <input id="ret-fv" name="fv" type="number" inputmode="decimal" step="any">
+            <button type="button" class="tvm-solve" data-solve="fv">FV</button>
           </div>
-          <div class="field">
-            <label for="ret-years">Periods (Years)</label>
-            <input id="ret-years" name="years" type="number" inputmode="decimal" min="0" step="any" value="20">
-            <div class="chip">Periods</div>
+          <div class="tvm-row">
+            <label for="ret-rate">Annual Rate(%)</label>
+            <input id="ret-rate" name="rate" type="number" inputmode="decimal" step="any">
+            <button type="button" class="tvm-solve" data-solve="rate">Rate</button>
           </div>
-          <div class="calc-opts">
-            <div class="opt">
-              <span>Compounding</span>
-              <div class="seg" data-group="compounding">
-                <button type="button" class="is-on" data-value="annually">Annually</button>
-                <button type="button" data-value="monthly">Monthly</button>
-              </div>
-            </div>
-            <div class="opt">
-              <span>Payment Mode</span>
-              <div class="seg" data-group="mode">
-                <button type="button" class="is-on" data-value="end">end</button>
-                <button type="button" data-value="beginning">beginning</button>
-              </div>
-            </div>
-            <div class="opt">
-              <span>Decimal Places</span>
-              <div class="seg" data-group="decimals">
-                <button type="button" class="is-on" data-value="2">2</button>
-                <button type="button" data-value="3">3</button>
-                <button type="button" data-value="4">4</button>
-                <button type="button" data-value="5">5</button>
-              </div>
+          <div class="tvm-row">
+            <label for="ret-n">Periods</label>
+            <input id="ret-n" name="n" type="number" inputmode="decimal" min="0" step="any">
+            <button type="button" class="tvm-solve" data-solve="n">Periods</button>
+          </div>
+          <div class="tvm-opt">
+            <span>Compounding</span>
+            <div class="tvm-select-wrap">
+              <select class="tvm-select" name="compounding" aria-label="Compounding">
+                <option value="annually" selected>Annually</option>
+                <option value="semiannually">Semi-Annually</option>
+                <option value="quarterly">Quarterly</option>
+                <option value="monthly">Monthly</option>
+                <option value="daily">Daily</option>
+              </select>
             </div>
           </div>
+          <div class="tvm-opt">
+            <span>Mode</span>
+            <div class="seg" data-group="mode">
+              <button type="button" data-value="end">End</button>
+              <button type="button" class="is-on" data-value="beginning">Beginning</button>
+            </div>
+          </div>
+          <div class="tvm-opt">
+            <span>Decimal</span>
+            <div class="seg" data-group="decimals">
+              <button type="button" class="is-on" data-value="2">Two</button>
+              <button type="button" data-value="3">Three</button>
+              <button type="button" data-value="4">Four</button>
+              <button type="button" data-value="5">Five</button>
+            </div>
+          </div>
+          <p class="tvm-hint" data-calc-hint hidden>Fill any four values, then tap the fifth button to solve. Compounding sets how many times interest is applied each year. Mode Beginning treats contributions as being made at the start of each period.</p>
         </form>
       </div>
     </section>
     <section class="section">
       <div class="section-inner">
-        <p class="kicker navy">Key financial planning topics</p>
-        <h2>Retirement Planning Essentials Guide</h2>
-        <div class="guide">
-          <p class="lede" style="margin-top:0">Download this guide to understand the essentials of retirement planning:</p>
-          <div class="guide-list">
-            <article>
-              <strong>01</strong>
-              <div>
-                <h3>The Power of Compounding Interest</h3>
-                <p class="lede">The earlier you start saving and investing, the shorter the climb to retirement, since time does much of the heavy lifting.</p>
-              </div>
-            </article>
-            <article>
-              <strong>02</strong>
-              <div>
-                <h3>How Singapore's National Healthcare Schemes Protect You</h3>
-                <p class="lede">How CPF MediSave, MediShield Life, and CareShield Life work together to defray healthcare expenses, and where an Integrated Shield Plan can close the gap for private or higher-ward treatment.</p>
-              </div>
-            </article>
-            <article>
-              <strong>03</strong>
-              <div>
-                <h3>Building A Retirement Income Plan</h3>
-                <p class="lede">How to structure your CPF, insurance, and investments into an income you can rely on.</p>
-              </div>
-            </article>
+        <div class="guide-head">
+          <p class="kicker">Key financial planning topics</p>
+          <h2>Retirement Planning Essentials Guide</h2>
+          <p class="lede">Download this guide to understand the essentials of retirement planning</p>
+        </div>
+        <div class="guide-cta">
+          <a class="btn" href="book.html">Download Guide →</a>
+        </div>
+        <div class="guide-cards">
+          <article>
+            <span class="guide-num">01</span>
+            <h3>The Power of Compounding Interest</h3>
+            <p>The earlier you start saving and investing, the shorter the climb to retirement, since time does much of the heavy lifting.</p>
+          </article>
+          <article>
+            <span class="guide-num">02</span>
+            <h3>How Singapore’s National Healthcare Schemes Protect You</h3>
+            <p>How CPF MediSave, MediShield Life, and CareShield Life work together to defray healthcare expenses, and where an Integrated Shield Plan can close the gap for private or higher-ward treatment.</p>
+          </article>
+          <article>
+            <span class="guide-num">03</span>
+            <h3>Building A Retirement Income Plan</h3>
+            <p>How to structure your CPF, insurance, and investments into an income you can rely on.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+    <section class="section quote-wrap">
+      <div class="section-inner testimonials">
+        <p class="kicker">Testimonials</p>
+        <h2>Trusted By Clients Like You</h2>
+        <div class="quote-card" data-testimonials aria-roledescription="carousel" aria-label="Client testimonials">
+          <img class="quote-mark" src="assets/icons/quote-left.svg" alt="" width="56.8448" height="41.3333" aria-hidden="true">
+          <div class="quote-viewport">
+            <div class="quote-track" data-quote-track>
+              <blockquote class="quote-slide is-active">
+                <p>“Your ability to explain complex financial concepts in a clear manner makes me well-informed of my financial decision. I appreciate your responsiveness, attention to details and customized financial strategies you developed for me.”</p>
+                <footer class="quote-person">
+                  <span class="quote-avatar" aria-hidden="true"></span>
+                  <div>
+                    <p class="who">Chua Rui Fen</p>
+                    <p class="role">Management Trainee, MSD Singapore</p>
+                  </div>
+                </footer>
+              </blockquote>
+            </div>
           </div>
+          <span class="quote-rule" aria-hidden="true"></span>
+          <div class="testimonial-dots" role="tablist" aria-label="Testimonials"></div>
         </div>
       </div>
     </section>
     <section class="section">
       <div class="section-inner faq-layout">
         <div>
-          <p class="kicker navy">FAQ</p>
           <h2>FAQs</h2>
           <div class="faq-photo">
             <img src="assets/photos/faq-retirement.jpg" alt="Clients discussing their financial plan">
+            <div class="reviews-card">
+              <strong>500+ clients</strong>
+              <p class="stars">★★★★★ <b>5.0</b></p>
+              <small>250 verified reviews</small>
+            </div>
           </div>
         </div>
         <div>
@@ -150,30 +191,30 @@
             <div class="answer">The amount depends on your desired lifestyle, expected retirement age, housing arrangements, healthcare needs, and other financial commitments.</div>
           </article>
           <article class="faq-item">
-            <button type="button">How can I generate a regular income during retirement? <span class="sign">+</span></button>
-            <div class="answer">Retirement income may come from CPF LIFE payouts, savings, investment income, and other eligible income sources.</div>
-          </article>
-          <article class="faq-item">
             <button type="button">How does CPF support my retirement planning? <span class="sign">+</span></button>
             <div class="answer">CPF plays an important role in retirement planning through your CPF savings and the monthly payouts available under CPF LIFE, subject to eligibility and applicable rules.</div>
           </article>
           <article class="faq-item">
-            <button type="button">Can a financial advisor help me plan for retirement if I already have CPF savings and investments? <span class="sign">+</span></button>
-            <div class="answer">Yes. A retirement financial advisor can help assess how your CPF savings, investments, insurance, and other assets work together.</div>
-          </article>
-          <article class="faq-item">
             <button type="button">What is CPF LIFE, and how does it affect my retirement income? <span class="sign">+</span></button>
             <div class="answer">CPF LIFE is a national longevity insurance annuity scheme that provides eligible members with monthly payouts for life. Understanding your expected payouts and how they complement other income sources can help you plan for your retirement lifestyle.</div>
+          </article>
+          <article class="faq-item">
+            <button type="button">How can I generate a regular income during retirement? <span class="sign">+</span></button>
+            <div class="answer">Retirement income may come from CPF LIFE payouts, savings, investment income, and other eligible income sources.</div>
+          </article>
+          <article class="faq-item">
+            <button type="button">Can a financial advisor help me plan for retirement if I already have CPF savings and investments? <span class="sign">+</span></button>
+            <div class="answer">Yes. A retirement financial advisor can help assess how your CPF savings, investments, insurance, and other assets work together.</div>
           </article>
         </div>
       </div>
     </section>
     <section class="cta-band">
       <div>
-        <h2>Start Your Financial Wellness Journey</h2>
-        <p>Have a question about estate planning, retirement planning, or your overall financial picture? Reach out for a no-obligation conversation today.</p>
+        <h2>Start Planning For Your Retirement Today</h2>
+        <p>Book a consultation to find out how a clear retirement plan can give you more freedom tomorrow.</p>
       </div>
-      <a class="btn" href="book.html">Book a consultation</a>
+      <a class="btn" href="book.html">Book a Consultation</a>
     </section>
   </main>
   <footer class="site-footer" data-site-footer></footer>

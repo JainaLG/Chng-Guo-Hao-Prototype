@@ -50,98 +50,149 @@
           <p class="lede">Estimate how your current funds and regular contributions could grow over time using the time value of money.</p>
           <div class="fv-card">
             <p class="label">Estimated future value</p>
-            <p class="value" data-fv>$248,890.39</p>
+            <p class="value" data-fv aria-live="polite">$0.00</p>
             <p class="note">This illustration is for general information only and does not account for fees, taxes, inflation, or market fluctuations.</p>
           </div>
+          <p class="calc-error" data-calc-error hidden></p>
         </div>
         <form class="calc-panel" onsubmit="return false;">
-          <div class="field">
+          <div class="tvm-head">
+            <a href="index.html">‹ Home</a>
+            <span class="tvm-title">TVM Calculator</span>
+            <button type="button" data-advanced aria-expanded="false">Advanced</button>
+          </div>
+          <div class="tvm-row">
             <label for="estate-pv">Present Value</label>
-            <input id="estate-pv" name="pv" type="number" inputmode="decimal" min="0" step="any" value="100000">
-            <div class="chip">PV</div>
+            <input id="estate-pv" name="pv" type="number" inputmode="decimal" step="any" placeholder="">
+            <button type="button" class="tvm-solve" data-solve="pv">PV</button>
           </div>
-          <div class="field">
+          <div class="tvm-row">
             <label for="estate-pmt">Payments</label>
-            <input id="estate-pmt" name="pmt" type="number" inputmode="decimal" step="any" value="1000">
-            <div class="chip">PMT</div>
+            <input id="estate-pmt" name="pmt" type="number" inputmode="decimal" step="any">
+            <button type="button" class="tvm-solve" data-solve="pmt">PMT</button>
           </div>
-          <div class="field">
-            <label for="estate-rate">Annual Rate (%)</label>
-            <input id="estate-rate" name="rate" type="number" inputmode="decimal" min="0" step="any" value="4">
-            <div class="chip">Rate</div>
+          <div class="tvm-row">
+            <label for="estate-fv">Future Value</label>
+            <input id="estate-fv" name="fv" type="number" inputmode="decimal" step="any">
+            <button type="button" class="tvm-solve" data-solve="fv">FV</button>
           </div>
-          <div class="field">
-            <label for="estate-years">Periods (Years)</label>
-            <input id="estate-years" name="years" type="number" inputmode="decimal" min="0" step="any" value="20">
-            <div class="chip">Periods</div>
+          <div class="tvm-row">
+            <label for="estate-rate">Annual Rate(%)</label>
+            <input id="estate-rate" name="rate" type="number" inputmode="decimal" step="any">
+            <button type="button" class="tvm-solve" data-solve="rate">Rate</button>
           </div>
-          <div class="calc-opts">
-            <div class="opt">
-              <span>Compounding</span>
-              <div class="seg" data-group="compounding">
-                <button type="button" class="is-on" data-value="annually">Annually</button>
-                <button type="button" data-value="monthly">Monthly</button>
-              </div>
-            </div>
-            <div class="opt">
-              <span>Payment Mode</span>
-              <div class="seg" data-group="mode">
-                <button type="button" class="is-on" data-value="end">end</button>
-                <button type="button" data-value="beginning">beginning</button>
-              </div>
-            </div>
-            <div class="opt">
-              <span>Decimal Places</span>
-              <div class="seg" data-group="decimals">
-                <button type="button" class="is-on" data-value="2">2</button>
-                <button type="button" data-value="3">3</button>
-                <button type="button" data-value="4">4</button>
-                <button type="button" data-value="5">5</button>
-              </div>
+          <div class="tvm-row">
+            <label for="estate-n">Periods</label>
+            <input id="estate-n" name="n" type="number" inputmode="decimal" min="0" step="any">
+            <button type="button" class="tvm-solve" data-solve="n">Periods</button>
+          </div>
+          <div class="tvm-opt">
+            <span>Compounding</span>
+            <div class="tvm-select-wrap">
+              <select class="tvm-select" name="compounding" aria-label="Compounding">
+                <option value="annually" selected>Annually</option>
+                <option value="semiannually">Semi-Annually</option>
+                <option value="quarterly">Quarterly</option>
+                <option value="monthly">Monthly</option>
+                <option value="daily">Daily</option>
+              </select>
             </div>
           </div>
+          <div class="tvm-opt">
+            <span>Mode</span>
+            <div class="seg" data-group="mode">
+              <button type="button" data-value="end">End</button>
+              <button type="button" class="is-on" data-value="beginning">Beginning</button>
+            </div>
+          </div>
+          <div class="tvm-opt">
+            <span>Decimal</span>
+            <div class="seg" data-group="decimals">
+              <button type="button" class="is-on" data-value="2">Two</button>
+              <button type="button" data-value="3">Three</button>
+              <button type="button" data-value="4">Four</button>
+              <button type="button" data-value="5">Five</button>
+            </div>
+          </div>
+          <p class="tvm-hint" data-calc-hint hidden>Fill any four values, then tap the fifth button to solve. Compounding sets how many times interest is applied each year. Mode Beginning treats contributions as being made at the start of each period.</p>
         </form>
       </div>
     </section>
     <section class="section">
       <div class="section-inner">
-        <p class="kicker navy">Key financial planning topics</p>
-        <h2>Estate Planning Essentials Guide</h2>
-        <div class="guide">
-          <p class="lede" style="margin-top:0">Download this guide to understand the essentials of estate planning:</p>
-          <div class="guide-list">
-            <article>
-              <strong>01</strong>
-              <div>
-                <h3>What a Will Covers and Why It Matters</h3>
-                <p class="lede">How a will sets out your wishes for distributing your assets and helps provide clarity for your loved ones.</p>
-              </div>
-            </article>
-            <article>
-              <strong>02</strong>
-              <div>
-                <h3>How Trusts Support Wealth Transfer</h3>
-                <p class="lede">How trusts can help manage, preserve, and transfer wealth according to your wishes and your family’s needs.</p>
-              </div>
-            </article>
-            <article>
-              <strong>03</strong>
-              <div>
-                <h3>Understanding CPF Nominations</h3>
-                <p class="lede">How CPF nominations determine who receives your CPF savings, and why keeping your nominations updated matters.</p>
-              </div>
-            </article>
+        <div class="guide-head">
+          <p class="kicker">Key financial planning topics</p>
+          <h2>Estate Planning Essentials Guide</h2>
+          <p class="lede">Download this guide to understand the essentials of estate planning</p>
+        </div>
+        <div class="guide-cta">
+          <a class="btn" href="book.html">Download Guide →</a>
+        </div>
+        <div class="guide-cards">
+          <article>
+            <span class="guide-num">01</span>
+            <h3>What a Will Covers and Why It Matters</h3>
+            <p>How a will sets out your wishes for distributing your assets and helps provide clarity for your loved ones.</p>
+          </article>
+          <article>
+            <span class="guide-num">02</span>
+            <h3>How Trusts Support Wealth Transfer</h3>
+            <p>How trusts can help manage, preserve, and transfer wealth according to your wishes and your family’s needs.</p>
+          </article>
+          <article>
+            <span class="guide-num">03</span>
+            <h3>Understanding CPF Nominations</h3>
+            <p>How CPF nominations determine who receives your CPF savings, and why keeping your nominations updated matters.</p>
+          </article>
+          <article>
+            <span class="guide-num">04</span>
+            <h3>Using Insurance for Estate Liquidity</h3>
+            <p>How insurance proceeds can provide funds to support your loved ones and help meet financial obligations when they need it.</p>
+          </article>
+          <article>
+            <span class="guide-num">05</span>
+            <h3>Why a Lasting Power of Attorney Matters</h3>
+            <p>How an LPA allows you to appoint trusted individuals to make decisions on your behalf if you lose mental capacity.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+    <section class="section quote-wrap">
+      <div class="section-inner testimonials">
+        <p class="kicker">Testimonials</p>
+        <h2>Trusted By Clients Like You</h2>
+        <div class="quote-card" data-testimonials aria-roledescription="carousel" aria-label="Client testimonials">
+          <img class="quote-mark" src="assets/icons/quote-left.svg" alt="" width="56.8448" height="41.3333" aria-hidden="true">
+          <div class="quote-viewport">
+            <div class="quote-track" data-quote-track>
+              <blockquote class="quote-slide is-active">
+                <p>“Your ability to explain complex financial concepts in a clear manner makes me well-informed of my financial decision. I appreciate your responsiveness, attention to details and customized financial strategies you developed for me.”</p>
+                <footer class="quote-person">
+                  <span class="quote-avatar" aria-hidden="true"></span>
+                  <div>
+                    <p class="who">Chua Rui Fen</p>
+                    <p class="role">Management Trainee, MSD Singapore</p>
+                  </div>
+                </footer>
+              </blockquote>
+            </div>
           </div>
+          <span class="quote-rule" aria-hidden="true"></span>
+          <div class="testimonial-dots" role="tablist" aria-label="Testimonials"></div>
         </div>
       </div>
     </section>
     <section class="section">
       <div class="section-inner faq-layout">
         <div>
-          <p class="kicker navy">FAQ</p>
           <h2>FAQs</h2>
           <div class="faq-photo">
             <img src="assets/photos/faq-estate.jpg" alt="Clients discussing their financial plan">
+            <div class="reviews-card">
+              <strong>500+ clients</strong>
+              <p class="stars">★★★★★ <b>5.0</b></p>
+              <small>250 verified reviews</small>
+            </div>
           </div>
         </div>
         <div>
@@ -171,9 +222,9 @@
     <section class="cta-band">
       <div>
         <h2>Start Planning Your Legacy Today</h2>
-        <p>Have a question about estate planning, retirement planning, or your overall financial picture? Reach out for a no-obligation conversation today.</p>
+        <p>Book a consultation to find out how an estate plan can protect the people who matter most to you.</p>
       </div>
-      <a class="btn" href="book.html">Book a consultation</a>
+      <a class="btn" href="book.html">Book a Consultation</a>
     </section>
   </main>
   <footer class="site-footer" data-site-footer></footer>
