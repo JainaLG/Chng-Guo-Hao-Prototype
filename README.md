@@ -6,13 +6,15 @@ Visual design follows the [Figma file](https://www.figma.com/design/6OAG1NAK4POn
 
 ## Shareable prototype (stays online after Cursor closes)
 
-Local `127.0.0.1` only works while this Cloud Agent is running.
+The working website lives in **this repo** (`site/` on [`cursor/wealth-path-pages-plugin-1952`](https://github.com/JainaLG/Chng-Guo-Hao-Prototype/tree/cursor/wealth-path-pages-plugin-1952/site), [PR #1](https://github.com/JainaLG/Chng-Guo-Hao-Prototype/pull/1)).
 
-The public client site is **https://jainalg.github.io/cgh-prototype/** (GitHub Pages on `JainaLG/cgh-prototype`). Copy the contents of `site/` to that repo’s `main` branch (root) to update it.
+GitHub Pages URL for this repo:
+
+**https://jainalg.github.io/Chng-Guo-Hao-Prototype/**
+
+Turn it on under **Settings → Pages → Source: GitHub Actions**. GitHub Free only serves Pages from a **public** repo; this repo is currently private, so either make it public or use GitHub Pro. After that, every push of `site/` publishes the client preview.
 
 Figma click-through: https://www.figma.com/proto/6OAG1NAK4POnb3m1Ynpsv8/Chng-Guo-Hao--FA--Website-Prototyping?node-id=25-2090&scaling=scale-down-width&content-scaling=fixed&page-id=0%3A1
-
-This repo can also publish `site/` via GitHub Actions (Settings → Pages → Source: GitHub Actions). That needs a public repo on GitHub Free, or GitHub Pro if the repo stays private.
 
 ## Open the website locally
 
