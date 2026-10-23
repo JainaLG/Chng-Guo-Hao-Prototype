@@ -88,18 +88,92 @@
       el.setAttribute("tabindex", "0")
     })
 
+    const testimonials = [
+      {
+        quote: "Your ability to explain complex financial concepts in a clear manner makes me well-informed of my financial decision. I appreciate your responsiveness, attention to details and customized financial strategies you developed for me.",
+        who: "Chua Rui Fen",
+        role: "Management Trainee, MSD Singapore"
+      },
+      {
+        quote: "Guohao cares for my financial planning needs and is very transparent in the proposed options. He is not pushy and able to provide sound finance advice to help me make informed decisions for my retirement planning.",
+        who: "Evelyn Low",
+        role: "Retiree"
+      },
+      {
+        quote: "Guohao shares the overall concept of financial success model and provides very clear and transparent viewpoints on the recommended plans to tailor to my financial planning needs. He is also very patient in addressing all my queries.",
+        who: "Julie Ji",
+        role: "Senior Operational Excellence Manager, DB Schenker"
+      },
+      {
+        quote: "Guohao is passionate in his field of work. I trust to leave my family’s financial planning needs to him. He optimizes my current resources and provides value-added inputs to meet my family’s financial needs. He goes the extra mile to ensure a fuss-free claim process, so the payout is received in a timely manner.",
+        who: "Leonard Leong",
+        role: "Risk Management Specialist, UOB"
+      },
+      {
+        quote: "Guohao has in-depth financial products knowledge and is attention to details. As a wealth management practitioner, he is passionate and highly motivated to serve clients and take care of their interests.",
+        who: "Daniel Tan",
+        role: "Director, BroadTech Engineering"
+      }
+    ]
+
+    function escapeHtml(value) {
+      return String(value).replace(/[&<>"']/g, function (ch) {
+        return ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[ch]
+      })
+    }
+
     document.querySelectorAll("[data-testimonials]").forEach(function (root) {
-      const slides = Array.prototype.slice.call(root.querySelectorAll(".quote-slide"))
-      const dots = Array.prototype.slice.call(root.querySelectorAll(".testimonial-dots button"))
-      if (!slides.length || slides.length !== dots.length) return
-      let index = slides.findIndex(function (slide) { return slide.classList.contains("is-active") })
-      if (index < 0) index = 0
+      const track = root.querySelector("[data-quote-track]")
+      const dotsRoot = root.querySelector(".testimonial-dots")
+      if (!track || !dotsRoot) return
+
+      track.innerHTML = testimonials.map(function (item, i) {
+        return (
+          '<blockquote class="quote-slide' + (i === 0 ? " is-active" : "") + '"' +
+            (i === 0 ? "" : ' aria-hidden="true"') + ">" +
+            "<p>“" + escapeHtml(item.quote) + "”</p>" +
+            '<footer class="quote-person">' +
+              '<span class="quote-avatar" aria-hidden="true"></span>' +
+              "<div>" +
+                '<p class="who">' + escapeHtml(item.who) + "</p>" +
+                '<p class="role">' + escapeHtml(item.role) + "</p>" +
+              "</div>" +
+            "</footer>" +
+          "</blockquote>"
+        )
+      }).join("")
+
+      dotsRoot.innerHTML = testimonials.map(function (item, i) {
+        return (
+          '<button type="button" role="tab" aria-label="Show testimonial from ' +
+          escapeHtml(item.who) + " (" + (i + 1) + " of " + testimonials.length + ')"' +
+          ' aria-selected="' + (i === 0 ? "true" : "false") + '"' +
+          (i === 0 ? ' class="is-active"' : "") + "></button>"
+        )
+      }).join("")
+
+      const slides = Array.prototype.slice.call(track.querySelectorAll(".quote-slide"))
+      const dots = Array.prototype.slice.call(dotsRoot.querySelectorAll("button"))
+      let index = 0
 
       function show(next) {
-        index = (next + slides.length) % slides.length
-        slides.forEach(function (slide, i) {
-          slide.classList.toggle("is-active", i === index)
+        const wrapped = (next + slides.length) % slides.length
+        if (wrapped === index) return
+        const current = slides[index]
+        const incoming = slides[wrapped]
+
+        slides.forEach(function (slide) {
+          slide.classList.remove("is-leave")
         })
+
+        current.classList.remove("is-active")
+        current.classList.add("is-leave")
+        current.setAttribute("aria-hidden", "true")
+
+        incoming.classList.add("is-active")
+        incoming.removeAttribute("aria-hidden")
+
+        index = wrapped
         dots.forEach(function (dot, i) {
           const on = i === index
           dot.classList.toggle("is-active", on)
@@ -116,7 +190,10 @@
         if (event.key === "ArrowLeft") { event.preventDefault(); show(index - 1) }
       })
       let startX = null
-      root.addEventListener("pointerdown", function (event) { startX = event.clientX })
+      root.addEventListener("pointerdown", function (event) {
+        if (event.target.closest("button")) return
+        startX = event.clientX
+      })
       root.addEventListener("pointerup", function (event) {
         if (startX == null) return
         const dx = event.clientX - startX
