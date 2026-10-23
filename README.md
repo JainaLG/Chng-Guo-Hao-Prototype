@@ -6,10 +6,11 @@ Visual design follows the [Figma file](https://www.figma.com/design/6OAG1NAK4POn
 
 ## Shareable prototype (stays online after Cursor closes)
 
-Local `127.0.0.1` only works while this Cloud Agent is running. For client viewing use a hosted URL:
+Local `127.0.0.1` only works while this Cloud Agent is running.
 
-- **GitHub Pages (permanent):** https://jainalg.github.io/cgh-prototype/
-- **Figma prototype (permanent):** https://www.figma.com/proto/6OAG1NAK4POnb3m1Ynpsv8/Chng-Guo-Hao--FA--Website-Prototyping?node-id=25-2090&scaling=scale-down-width&content-scaling=fixed&page-id=0%3A1
+The public client site is **https://jainalg.github.io/cgh-prototype/** (GitHub Pages on `JainaLG/cgh-prototype`). Copy the contents of `site/` to that repo’s `main` branch (root) to update it.
+
+Figma click-through: https://www.figma.com/proto/6OAG1NAK4POnb3m1Ynpsv8/Chng-Guo-Hao--FA--Website-Prototyping?node-id=25-2090&scaling=scale-down-width&content-scaling=fixed&page-id=0%3A1
 
 This repo can also publish `site/` via GitHub Actions (Settings → Pages → Source: GitHub Actions). That needs a public repo on GitHub Free, or GitHub Pro if the repo stays private.
 
