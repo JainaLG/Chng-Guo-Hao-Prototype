@@ -88,6 +88,44 @@
       el.setAttribute("tabindex", "0")
     })
 
+    document.querySelectorAll("[data-testimonials]").forEach(function (root) {
+      const slides = Array.prototype.slice.call(root.querySelectorAll(".quote-slide"))
+      const dots = Array.prototype.slice.call(root.querySelectorAll(".testimonial-dots button"))
+      if (!slides.length || slides.length !== dots.length) return
+      let index = slides.findIndex(function (slide) { return slide.classList.contains("is-active") })
+      if (index < 0) index = 0
+
+      function show(next) {
+        index = (next + slides.length) % slides.length
+        slides.forEach(function (slide, i) {
+          slide.classList.toggle("is-active", i === index)
+        })
+        dots.forEach(function (dot, i) {
+          const on = i === index
+          dot.classList.toggle("is-active", on)
+          dot.setAttribute("aria-selected", on ? "true" : "false")
+        })
+      }
+
+      dots.forEach(function (dot, i) {
+        dot.addEventListener("click", function () { show(i) })
+      })
+      root.tabIndex = 0
+      root.addEventListener("keydown", function (event) {
+        if (event.key === "ArrowRight") { event.preventDefault(); show(index + 1) }
+        if (event.key === "ArrowLeft") { event.preventDefault(); show(index - 1) }
+      })
+      let startX = null
+      root.addEventListener("pointerdown", function (event) { startX = event.clientX })
+      root.addEventListener("pointerup", function (event) {
+        if (startX == null) return
+        const dx = event.clientX - startX
+        startX = null
+        if (dx > 40) show(index - 1)
+        if (dx < -40) show(index + 1)
+      })
+    })
+
     const form = document.querySelector("[data-consult-form]")
     if (form) {
       form.addEventListener("submit", function (event) {

@@ -611,33 +611,109 @@ h2 .accent-teal { color: var(--teal); }
 .stats strong { display: block; font-family: Manrope, sans-serif; font-size: 48px; color: var(--navy); }
 .stats span { color: var(--muted); }
 
-.quote-wrap { background: var(--navy); color: var(--white); text-align: center; }
-.quote-wrap .kicker { color: rgba(255,255,255,0.8); }
-.quote-wrap h2 { color: var(--white); margin-bottom: 32px; }
-.quote {
-  background: var(--white);
+.quote-wrap {
+  background: var(--navy);
+  color: var(--white);
+  position: relative;
+  overflow: hidden;
+}
+.quote-wrap::before,
+.quote-wrap::after {
+  content: "";
+  position: absolute;
+  width: 520px;
+  height: 280px;
+  background-image: radial-gradient(circle, rgba(242, 186, 73, 0.28) 1.4px, transparent 1.6px);
+  background-size: 14px 14px;
+  pointer-events: none;
+}
+.quote-wrap::before { top: -40px; right: -80px; }
+.quote-wrap::after {
+  bottom: -40px;
+  left: -80px;
+  background-image: radial-gradient(circle, rgba(22, 122, 114, 0.35) 1.4px, transparent 1.6px);
+}
+.testimonials { position: relative; z-index: 1; max-width: 1224px; }
+.quote-wrap .kicker {
+  color: rgba(255,255,255,0.85);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.quote-wrap .kicker::before {
+  content: "";
+  width: 14px;
+  height: 2px;
+  background: var(--gold);
+}
+.quote-wrap h2 { color: var(--white); margin-bottom: 40px; }
+.quote-card {
+  position: relative;
+  background: rgba(255, 255, 255, 0.49);
   color: var(--ink);
-  border-radius: 24px;
-  padding: 40px;
-  max-width: 920px;
+  border-radius: 28px;
+  padding: 64px 56px 48px;
+  max-width: 911px;
   margin: 0 auto;
+  min-height: 420px;
   text-align: left;
 }
-.quote p { font-size: 20px; line-height: 32px; }
-.quote .who { margin-top: 24px; color: var(--navy); font-weight: 700; }
-.quote .role { color: var(--muted); font-weight: 400; }
+.quote-mark {
+  position: absolute;
+  top: 48px;
+  right: 56px;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 88px;
+  line-height: 0.7;
+  color: var(--navy);
+  pointer-events: none;
+}
+.quote-slide { display: none; margin: 0; }
+.quote-slide.is-active { display: block; }
+.quote-slide p { font-size: 20px; line-height: 32px; max-width: 52ch; }
+.quote .who,
+.quote-slide .who { color: var(--navy); font-weight: 700; font-size: 15px; }
+.quote .role,
+.quote-slide .role { color: var(--muted); font-weight: 400; font-size: 15px; }
 .quote-person {
   display: flex;
   align-items: center;
-  gap: 14px;
-  margin-top: 24px;
+  gap: 24px;
+  margin-top: 36px;
+  padding: 0 170px 28px 0;
+  border-bottom: 1px solid rgba(231, 231, 227, 0.85);
+}
+.quote-avatar {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: var(--ice);
+  flex: 0 0 auto;
 }
 .quote-person img {
-  width: 48px;
-  height: 48px;
+  width: 72px;
+  height: 72px;
   border-radius: 50%;
   object-fit: cover;
 }
+.testimonial-dots {
+  position: absolute;
+  right: 56px;
+  bottom: 104px;
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+.testimonial-dots button {
+  width: 12px;
+  height: 12px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: var(--ice);
+  cursor: pointer;
+}
+.testimonial-dots button.is-active { background: var(--navy); }
 
 .achievements {
   display: grid;
@@ -1043,6 +1119,10 @@ h2 .accent-teal { color: var(--teal); }
   .hero-art img { position: relative; right: auto; height: 420px; margin: 0 auto; }
   .cta-band { margin: 0 16px 40px; }
   .award-stats { position: static; margin-top: 16px; }
+  .quote-card { padding: 48px 24px 32px; min-height: 0; }
+  .quote-mark { right: 24px; top: 28px; font-size: 64px; }
+  .quote-person { padding-right: 0; }
+  .testimonial-dots { position: static; justify-content: flex-start; margin-top: 20px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
